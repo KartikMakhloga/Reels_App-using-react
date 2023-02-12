@@ -5,15 +5,18 @@ function VideoCard() {
   let [playing, setPlaying] = useState(false);
   return (
     <div className="video-card">
-      <video onClick={(e)=>{
-         if(playing){
-            setPlaying(false)
+      <video
+        onClick={(e) => {
+          if (playing) {
+            setPlaying(false);
             e.currentTarget.pause();
-        }else{
-            setPlaying(true)
+          } else {
+            setPlaying(true);
             e.currentTarget.play();
-         }
-      }} src="https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4"></video>
+          }
+        }}
+        src="https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4"
+      ></video>
       <span
         className="material-icons-outlined like"
         onClick={(el) => {
@@ -61,9 +64,9 @@ function VideoCard() {
             <input
               type="text"
               placeholder="Write Comment"
-              onClick={(e) => {
-                if (e.code === "Enter") {
-                  e.currentTarget.value = "";
+              onKeyDown={(el) => {
+                if (el.code === "Enter") {
+                  el.currentTarget.value = "";
                 }
               }}
             />
