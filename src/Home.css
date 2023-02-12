@@ -44,3 +44,17 @@
     right: 10px;
     cursor: pointer;
 }
+
+.username{
+    position: absolute;
+    bottom: 20vh;
+    left: 20px;
+}
+
+.song{
+    position: absolute;
+    bottom: 16vh;
+    left: 20px;
+    display: flex;
+    justify-content: space-around;
+}

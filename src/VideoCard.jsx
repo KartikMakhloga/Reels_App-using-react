@@ -14,8 +14,13 @@ function VideoCard() {
         favorite_border
       </span>
       <span className="material-icons-outlined comment">comment</span>
-      <p className="username"></p>
-      <p className="song"></p>
+      <p className="username">
+        <b>@username</b>
+      </p>
+      <p className="song">
+        <span class="material-icons-outlined">music_note</span>
+        <marquee>Song_Name</marquee>
+      </p>
     </div>
   );
 }
