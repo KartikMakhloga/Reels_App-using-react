@@ -2,6 +2,8 @@ import { Redirect } from "react-router-dom";
 import { auth } from "./firebase";
 import { userContext } from "./App";
 import { useContext } from "react";
+import VideoCard from "./VideoCard";
+import "./Home.css"
 
 let Home = () => {
   let value = useContext(userContext);
@@ -10,10 +12,12 @@ let Home = () => {
     <div>
       {value ? (
         <>
-          
+        <div className="posts-container">
+          <VideoCard />
+          <VideoCard />
+        </div>
           <button
-            type="button"
-            className="btn btn-primary m-2"
+            className="logout-btn"
             onClick={() => {
               auth.signOut();
             }}

@@ -1,0 +1,46 @@
+.logout-btn{
+    position: fixed;
+    bottom: 8rem;
+    right: 2rem;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    border: none;
+}
+
+.posts-container{
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+}
+
+.video-card{
+    color: white;
+    border: 1px solid;
+    height: 98%;
+    width: 30rem;
+    margin: auto;
+    position: relative;
+    border-radius: 2%;
+    margin-top: 2%;
+    scroll-snap-align: end;
+}
+
+.like{
+    position: absolute;
+    color: #d63031;
+    bottom: 20vh;
+    font-size: 40px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.comment{
+    position: absolute;
+    bottom: 14vh;
+    font-size: 40px;
+    right: 10px;
+    cursor: pointer;
+}
