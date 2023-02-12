@@ -1,13 +1,16 @@
 import { Redirect } from "react-router-dom";
 import { auth } from "./firebase";
+import { userContext } from "./App";
+import { useContext } from "react";
 
-let Home = (props) => {
+let Home = () => {
+  let value = useContext(userContext);
+
   return (
     <div>
-      {props.user ? (
+      {value ? (
         <>
-          <h1>{props.user.displayName}</h1>
-          <p>{props.user.email}</p>
+          
           <button
             type="button"
             className="btn btn-primary m-2"
@@ -19,7 +22,7 @@ let Home = (props) => {
           </button>
         </>
       ) : (
-        <Redirect to="/login" />
+        <Redirect to="/" />
       )}
     </div>
   );
