@@ -2,9 +2,18 @@ import { useState } from "react";
 
 function VideoCard() {
   let [boxOpen, setBoxOpen] = useState(false);
+  let [playing, setPlaying] = useState(false);
   return (
     <div className="video-card">
-      <video src="https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4"></video>
+      <video onClick={(e)=>{
+         if(playing){
+            setPlaying(false)
+            e.currentTarget.pause();
+        }else{
+            setPlaying(true)
+            e.currentTarget.play();
+         }
+      }} src="https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4"></video>
       <span
         className="material-icons-outlined like"
         onClick={(el) => {
