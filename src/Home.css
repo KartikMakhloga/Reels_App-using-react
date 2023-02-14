@@ -8,6 +8,15 @@
   border: none;
 }
 
+.upload-btn{
+  position: fixed;
+  bottom: 3rem;
+  right: 2rem;
+  display: block;
+  height: 4rem;
+  width: 6rem;
+}
+
 .posts-container {
   height: 100vh;
   width: 100vw;
@@ -62,6 +71,7 @@ video {
   height: 100%;
   width: 100%;
   object-fit: cover;
+  border-radius: 10px;
 }
 
 .comment-box {
@@ -110,3 +120,5 @@ video {
   border: none;
   cursor: pointer;
 }
+
+
