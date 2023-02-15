@@ -1,22 +1,42 @@
 import { Redirect } from "react-router-dom";
 import { auth, storage, firestore } from "./firebase";
 import { userContext } from "./App";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import VideoCard from "./VideoCard";
 import "./Home.css";
 
 let Home = () => {
   let value = useContext(userContext);
 
-  useEffect(() => {}, []);
+  let [posts, setPosts] = useState([]);
+
+  console.log(posts);
+
+  useEffect(() => {
+    let unsubscription = firestore
+      .collection("posts")
+      .onSnapshot((querySnapshot) => {
+        setPosts(
+          querySnapshot.docs.map((doc) => {
+            return doc.data();
+          })
+        );
+      });
+
+    //unsub from listening to changes on posts collection when home component is unmounted
+    return () => {
+      unsubscription();
+    };
+  }, []);
 
   return (
     <div>
       {value ? (
         <>
           <div className="posts-container">
-            <VideoCard />
-            <VideoCard />
+            {posts.map((post,index) => {
+              return <VideoCard key={index} post={post} />;
+            })}
           </div>
           <button
             className="logout-btn"
@@ -27,6 +47,10 @@ let Home = () => {
             LogOut
           </button>
           <input
+            //whenever click on input file tag set its value to null so that even if we select same file the tag will feel we have done some changes and it will call onChange
+            onClick={(e) => {
+              e.target.value = null;
+            }}
             onChange={(e) => {
               //handler for if user will not upload anything and just cancel
               if (!e.target.files[0]) return;
@@ -36,7 +60,7 @@ let Home = () => {
               //store the selected file so that we can upload it later on
               let file = e.target.files[0];
               //convert the file size into mb
-              size = Math.ceil(size / 1000000);
+              size = size / 1000000;
               console.log(size);
               //get file type
 
@@ -45,7 +69,7 @@ let Home = () => {
               //checks
               if (type !== "video") {
                 alert("Please upload a video only");
-              } else if (size >= 10) {
+              } else if (size > 100) {
                 alert("file is too large");
               } else {
                 //upload
@@ -76,9 +100,10 @@ let Home = () => {
 
                 //using the firebase storage object we are getting reference of a file location
                 //in our case posts/userId/filename and uploading our file to that location
+
                 let uploadTask = storage
-                  .ref(`/posts/${value.uid}/${name}`)
-                  .put(file);
+                  .ref(`/posts/${value.uid}/${Date.now() + name}`)
+                  .put(file); //added current date to filename so that same file copies can be store to firebase without overriding
 
                 //the upload method gives us upload which can be used to set up state_changed event
                 //this takes 3 callbacks
