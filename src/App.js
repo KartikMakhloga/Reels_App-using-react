@@ -1,26 +1,22 @@
-import { useState, createContext } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./Login";
 import Home from "./Home";
-
-let userContext = createContext();
+import AuthProvider from "./AuthProvider";
 
 function App() {
-  let [user, setUser] = useState(null);
-
   return (
     <>
       <Router>
-        <userContext.Provider value={user}>
+        <AuthProvider>
           <Switch>
             <Route path="/home">
               <Home />
             </Route>
             <Route path="/">
-              <Login handleUser={setUser} />
+              <Login  />
             </Route>
           </Switch>
-        </userContext.Provider>
+        </AuthProvider>
       </Router>
     </>
   );
@@ -28,5 +24,4 @@ function App() {
   // return <div>{user ? <Home user = {user}/> : <Login handleUser = {setUser}/>}</div>;
 }
 
-export {userContext};
 export default App;

@@ -1,30 +1,10 @@
-import { auth, signInWithGoogle, firestore } from "./firebase";
-import { useEffect, useContext } from "react";
+import { signInWithGoogle } from "./firebase";
+import { useContext } from "react";
 import { Redirect } from "react-router-dom";
-import { userContext } from "./App";
+import { AuthContext } from "./AuthProvider";
 
 let Login = (props) => {
-  let value = useContext(userContext);
-  useEffect(() => {
-    auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        // destructuring of user object
-        let { displayName, email, uid } = user;
-        let docRef = firestore.collection("users").doc(uid);
-        let document = docRef.get();
-        if (!document.exists) {
-          docRef.set({
-            displayName,
-            email,
-            posts: [],
-          });
-        }
-        props.handleUser({ displayName, email, uid });
-      } else {
-        props.handleUser(user);
-      }
-    });
-  }, []);
+  let value = useContext(AuthContext);
 
   return (
     <div>
