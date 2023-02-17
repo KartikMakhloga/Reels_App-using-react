@@ -152,3 +152,11 @@ video {
 .inner-comment {
   margin-top: -1rem;
 }
+
+#play-pause{
+  position: fixed;
+  font-size: 6rem;
+  left: 45rem;
+  bottom: 21rem;
+  pointer-events: none;
+}

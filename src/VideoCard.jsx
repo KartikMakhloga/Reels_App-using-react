@@ -27,7 +27,7 @@ function VideoCard(props) {
 
   return (
     <div className="video-card">
-      <video
+      <video loop
         onClick={(e) => {
           if (playing) {
             setPlaying(false);
