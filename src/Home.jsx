@@ -10,15 +10,13 @@ let Home = () => {
 
   let [posts, setPosts] = useState([]);
 
-  console.log(posts);
-
   useEffect(() => {
     let unsubscription = firestore
       .collection("posts")
       .onSnapshot((querySnapshot) => {
         setPosts(
           querySnapshot.docs.map((doc) => {
-            return doc.data();
+            return { ...doc.data(), id: doc.id };
           })
         );
       });
@@ -34,7 +32,7 @@ let Home = () => {
       {value ? (
         <>
           <div className="posts-container">
-            {posts.map((post,index) => {
+            {posts.map((post, index) => {
               return <VideoCard key={index} post={post} />;
             })}
           </div>

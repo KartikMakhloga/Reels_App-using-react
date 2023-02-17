@@ -8,7 +8,7 @@
   border: none;
 }
 
-.upload-btn{
+.upload-btn {
   position: fixed;
   bottom: 3rem;
   right: 2rem;
@@ -98,6 +98,8 @@ video {
   height: 80%;
   width: 100%;
   border: 1px solid black;
+  color: black;
+  overflow-y: scroll;
 }
 
 .comment-form {
@@ -121,4 +123,22 @@ video {
   cursor: pointer;
 }
 
+.all-comments img {
+  display: block;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+}
 
+.all-comments > div {
+  display: flex;
+  padding: 8px;
+}
+
+.all-comments > div > div {
+  margin-left: 20px;
+}
+
+.inner-comment {
+  margin-top: -1rem;
+}
